@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
@@ -10,7 +9,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject[] gameObjects; // Planetas
     [SerializeField] private GameObject indicator; // Indicador visual
+    [SerializeField] private GameObject LineRendererPrefab;
     [SerializeField] private CinemachineVirtualCamera virtualCamera; // Cámara
+    [SerializeField] private Transform NodeHolder;
 
     private int currentNodeIndex = 0; // Índice del nodo actual
 
@@ -21,13 +22,12 @@ public class GameManager : MonoBehaviour
         {
             graph.AddNode(i, gameObjects[i]);
         }
-
         // Conectar nodos en orden
         for (int i = 0; i < gameObjects.Length - 1; i++)
         {
             graph.AddEdge(i, i + 1);
         }
-
+        NodeConection();
         // Inicializar selección
         UpdateSelection();
     }
@@ -94,5 +94,21 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"Nivel seleccionado: {currentNodeIndex}");
         // Aquí puedes cargar la escena del nivel correspondiente
+    }
+    public void NodeConection()
+    {
+        foreach (var node in graph.Nodes)
+        {
+            foreach(var nodeNeighbor in node.Value.neighbors)
+            {
+                GameObject LineR = Instantiate(LineRendererPrefab, NodeHolder);
+
+                GameObject nodeObject = node.Value.Key; 
+                GameObject neighborObject = nodeNeighbor.Key;
+
+                LineR.GetComponent<LineRenderer>().SetPosition(0, nodeObject.transform.position);
+                LineR.GetComponent<LineRenderer>().SetPosition(1, neighborObject.transform.position);
+            }
+        }
     }
 }
