@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // Crear nodos (planetas)
         for (int i = 0; i < gameObjects.Length; i++)
         {
             graph.AddNode(i, gameObjects[i]);
