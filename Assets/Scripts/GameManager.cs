@@ -5,24 +5,27 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-    private Graph<int, GameObject> graph = new Graph<int, GameObject>();
+    private Graph<int, Zone> graph = new Graph<int, Zone>();
 
-    [SerializeField] private GameObject[] gameObjects; // Planetas
+    [SerializeField] private Zone[] levels; // Niveles
     [SerializeField] private GameObject indicator; // Indicador visual
     [SerializeField] private GameObject LineRendererPrefab;
     [SerializeField] private CinemachineVirtualCamera virtualCamera; // Cámara
     [SerializeField] private Transform NodeHolder;
+    [SerializeField] private GameObject[] planets; // Niveles
+
+    private float direction;
 
     private int currentNodeIndex = 0; // Índice del nodo actual
 
     void Start()
     {
-        for (int i = 0; i < gameObjects.Length; i++)
+        for (int i = 0; i < levels.Length; i++)
         {
-            graph.AddNode(i, gameObjects[i]);
+            graph.AddNode(i, levels[i]);
         }
         // Conectar nodos en orden
-        for (int i = 0; i < gameObjects.Length - 1; i++)
+        for (int i = 0; i < levels.Length - 1; i++)
         {
             graph.AddEdge(i, i + 1);
         }
@@ -31,13 +34,16 @@ public class GameManager : MonoBehaviour
         UpdateSelection();
     }
 
-    public void MoveSelection(InputAction.CallbackContext context)
+    public void OnMovement(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
 
-        float input = context.ReadValue<float>(); // Leer input de "A" o "D"
-
-        if (input < 0) // "A" → Nodo anterior
+        direction = context.ReadValue<float>(); // Leer input de "A" o "D"
+        MoveSelection();
+    }
+    public void MoveSelection()
+    {
+        if (direction < 0) // "A" → Nodo anterior
         {
             if (currentNodeIndex > 0)
             {
@@ -45,9 +51,9 @@ public class GameManager : MonoBehaviour
                 UpdateSelection();
             }
         }
-        else if (input > 0) // "D" → Nodo siguiente
+        else if (direction > 0) // "D" → Nodo siguiente
         {
-            if (currentNodeIndex < gameObjects.Length - 1)
+            if (currentNodeIndex < levels.Length - 1)
             {
                 currentNodeIndex++;
                 UpdateSelection();
@@ -57,14 +63,14 @@ public class GameManager : MonoBehaviour
 
     public void UpdateSelection()
     {
-        Node<GameObject> selectedNode = graph.Nodes[currentNodeIndex];
+        Node<Zone> selectedNode = graph.Nodes[currentNodeIndex];
 
         // Mover la cámara al nuevo nodo
         virtualCamera.Follow = indicator.transform;
         virtualCamera.LookAt = indicator.transform;
 
         // Movimiento suave del indicador
-        StartCoroutine(MoveIndicatorSmoothly(selectedNode.Key.transform.position));
+        StartCoroutine(MoveIndicatorSmoothly(selectedNode.Key.ZoneObject.transform.position));
     }
 
     private IEnumerator MoveIndicatorSmoothly(Vector3 targetPosition)
@@ -92,7 +98,7 @@ public class GameManager : MonoBehaviour
         if (!context.performed) return;
 
         Debug.Log($"Nivel seleccionado: {currentNodeIndex}");
-        // Aquí puedes cargar la escena del nivel correspondiente
+        // Aquí se carga la escena del nivel correspondiente
     }
     public void NodeConection()
     {
@@ -102,11 +108,11 @@ public class GameManager : MonoBehaviour
             {
                 GameObject LineR = Instantiate(LineRendererPrefab, NodeHolder);
 
-                GameObject nodeObject = node.Value.Key; 
-                GameObject neighborObject = nodeNeighbor.Key;
+                Zone nodeObject = node.Value.Key; 
+                Zone neighborObject = nodeNeighbor.Key;
 
-                LineR.GetComponent<LineRenderer>().SetPosition(0, nodeObject.transform.position);
-                LineR.GetComponent<LineRenderer>().SetPosition(1, neighborObject.transform.position);
+                LineR.GetComponent<LineRenderer>().SetPosition(0, nodeObject.ZoneObject.transform.position);
+                LineR.GetComponent<LineRenderer>().SetPosition(1, neighborObject.ZoneObject.transform.position);
             }
         }
     }
