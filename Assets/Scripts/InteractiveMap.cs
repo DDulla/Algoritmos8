@@ -10,7 +10,7 @@ public class InteractiveMap : Graph<int, Zone>
     }
     public void ConnectZones(int zoneId1, int zoneId2)
     {
-        Nodes[zoneId1].AddNeighbor(Nodes[zoneId2]);
-        Nodes[zoneId2].AddNeighbor(Nodes[zoneId1]);
+        AddEdge(zoneId1, zoneId2);
+        AddEdge(zoneId2, zoneId1);
     }
 }
