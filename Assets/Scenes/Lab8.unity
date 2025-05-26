@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 298990683}
   - component: {fileID: 298990682}
   - component: {fileID: 298990681}
+  - component: {fileID: 298990685}
   m_Layer: 0
   m_Name: Planet2
   m_TagString: Untagged
@@ -228,6 +229,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 586798173}
   m_LocalEulerAnglesHint: {x: -0.106, y: 0.896, z: 0.43}
+--- !u!114 &298990685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298990680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6290889b40c1f42b8bc80e3b224430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneKey: 2
+  zoneDescription: Level 2
+  unlockedMaterial: {fileID: 2100000, guid: 1ce1c26b8fbbb3948a540a593f67e13f, type: 2}
+  lockedMaterial: {fileID: 2100000, guid: a0c6762e2d023974dbe727d03f83089e, type: 2}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +728,7 @@ GameObject:
   - component: {fileID: 443416523}
   - component: {fileID: 443416522}
   - component: {fileID: 443416521}
+  - component: {fileID: 443416525}
   m_Layer: 0
   m_Name: Planet5
   m_TagString: Untagged
@@ -804,6 +822,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 586798173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &443416525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443416520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6290889b40c1f42b8bc80e3b224430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneKey: 5
+  zoneDescription: Level 5
+  unlockedMaterial: {fileID: 2100000, guid: 1ce1c26b8fbbb3948a540a593f67e13f, type: 2}
+  lockedMaterial: {fileID: 2100000, guid: a0c6762e2d023974dbe727d03f83089e, type: 2}
 --- !u!1 &586798172
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,6 +888,7 @@ GameObject:
   - component: {fileID: 766896474}
   - component: {fileID: 766896473}
   - component: {fileID: 766896472}
+  - component: {fileID: 766896476}
   m_Layer: 0
   m_Name: Planet3
   m_TagString: Untagged
@@ -947,6 +982,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 586798173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &766896476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766896471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6290889b40c1f42b8bc80e3b224430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneKey: 3
+  zoneDescription: Level 3
+  unlockedMaterial: {fileID: 2100000, guid: 1ce1c26b8fbbb3948a540a593f67e13f, type: 2}
+  lockedMaterial: {fileID: 2100000, guid: a0c6762e2d023974dbe727d03f83089e, type: 2}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -11403,6 +11454,7 @@ GameObject:
   - component: {fileID: 1453710956}
   - component: {fileID: 1453710955}
   - component: {fileID: 1453710954}
+  - component: {fileID: 1453710957}
   m_Layer: 0
   m_Name: ExtraPlanet1
   m_TagString: Untagged
@@ -11466,7 +11518,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1ce1c26b8fbbb3948a540a593f67e13f, type: 2}
+  - {fileID: 2100000, guid: a0c6762e2d023974dbe727d03f83089e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11496,6 +11548,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1453710952}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1453710957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453710952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6290889b40c1f42b8bc80e3b224430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneKey: 10
+  zoneDescription: Extra level 1
+  unlockedMaterial: {fileID: 2100000, guid: 1ce1c26b8fbbb3948a540a593f67e13f, type: 2}
+  lockedMaterial: {fileID: 2100000, guid: a0c6762e2d023974dbe727d03f83089e, type: 2}
 --- !u!1 &1544759198
 GameObject:
   m_ObjectHideFlags: 0
@@ -11722,6 +11790,7 @@ GameObject:
   - component: {fileID: 1689522712}
   - component: {fileID: 1689522711}
   - component: {fileID: 1689522710}
+  - component: {fileID: 1689522714}
   m_Layer: 0
   m_Name: Planet1
   m_TagString: Untagged
@@ -11815,6 +11884,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 586798173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1689522714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689522709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6290889b40c1f42b8bc80e3b224430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneKey: 1
+  zoneDescription: Level 1
+  unlockedMaterial: {fileID: 2100000, guid: 1ce1c26b8fbbb3948a540a593f67e13f, type: 2}
+  lockedMaterial: {fileID: 2100000, guid: a0c6762e2d023974dbe727d03f83089e, type: 2}
 --- !u!1 &1724340269 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 11a065c4bb4afc443958f24d56f17a31,
@@ -11838,7 +11923,7 @@ GameObject:
   - component: {fileID: 1834517000}
   - component: {fileID: 1834516999}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: MapManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11867,9 +11952,8 @@ MonoBehaviour:
   - {fileID: 766896471}
   - {fileID: 2100201836}
   - {fileID: 443416520}
-  extraPlanets:
-  - {fileID: 1453710952}
-  - {fileID: 1840604847}
+  - {fileID: 1453710957}
+  - {fileID: 1840604852}
   levelText: {fileID: 1044383258}
   descriptionText: {fileID: 1143233224}
 --- !u!4 &1834517000
@@ -11899,6 +11983,7 @@ GameObject:
   - component: {fileID: 1840604851}
   - component: {fileID: 1840604850}
   - component: {fileID: 1840604849}
+  - component: {fileID: 1840604852}
   m_Layer: 0
   m_Name: ExtraPlanet2
   m_TagString: Untagged
@@ -11962,7 +12047,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1ce1c26b8fbbb3948a540a593f67e13f, type: 2}
+  - {fileID: 2100000, guid: a0c6762e2d023974dbe727d03f83089e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11992,6 +12077,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840604847}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1840604852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840604847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6290889b40c1f42b8bc80e3b224430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneKey: 20
+  zoneDescription: Extra Level 2
+  unlockedMaterial: {fileID: 2100000, guid: 1ce1c26b8fbbb3948a540a593f67e13f, type: 2}
+  lockedMaterial: {fileID: 2100000, guid: a0c6762e2d023974dbe727d03f83089e, type: 2}
 --- !u!1 &2079428071
 GameObject:
   m_ObjectHideFlags: 0
@@ -16832,6 +16933,7 @@ GameObject:
   - component: {fileID: 2100201839}
   - component: {fileID: 2100201838}
   - component: {fileID: 2100201837}
+  - component: {fileID: 2100201841}
   m_Layer: 0
   m_Name: Planet4
   m_TagString: Untagged
@@ -16925,6 +17027,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 586798173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2100201841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100201836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6290889b40c1f42b8bc80e3b224430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneKey: 4
+  zoneDescription: Level 4
+  unlockedMaterial: {fileID: 2100000, guid: 1ce1c26b8fbbb3948a540a593f67e13f, type: 2}
+  lockedMaterial: {fileID: 2100000, guid: a0c6762e2d023974dbe727d03f83089e, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

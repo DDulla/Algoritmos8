@@ -22,22 +22,13 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "MoveExtraSelection",
-                    "type": "Value",
-                    "id": "e1ba9386-beb9-436b-b23d-5bcfed9b5396",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "98c3cac1-4083-4576-8fd9-770df52ebbb1",
-                    "path": "<Keyboard>/enter",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -75,39 +66,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "MoveSelection",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "65885e57-a677-462a-8c73-363c18b1c32e",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MoveExtraSelection",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "250b33a8-f12e-4581-ab2d-9916d2bb1094",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MoveExtraSelection",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "d7768146-6ac0-44b3-973b-f0d5d8cebd73",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MoveExtraSelection",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

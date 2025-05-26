@@ -8,9 +8,4 @@ public class InteractiveMap : Graph<int, Zone>
     {
         AddNode(zone.ZoneKey, zone);
     }
-    public void ConnectZones(int zoneId1, int zoneId2)
-    {
-        AddEdge(zoneId1, zoneId2);
-        AddEdge(zoneId2, zoneId1);
-    }
 }

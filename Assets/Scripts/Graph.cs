@@ -31,7 +31,6 @@ public class Graph<TKey, TNodeValue>
             Node<TNodeValue> n2 = Nodes[key2];
 
             n1.AddNeighbor(n2);
-            n2.AddNeighbor(n1);
         }
         else
         {
