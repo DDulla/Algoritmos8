@@ -7,48 +7,35 @@ using System.Collections.Generic;
 
 public class MapController : MonoBehaviour
 {
-    private Dictionary<int, UIZone> zoneLookup = new Dictionary<int, UIZone>();
     private InteractiveMap interactiveMap = new InteractiveMap(); 
 
     [SerializeField] private GameObject indicator; // Indicador visual
     [SerializeField] private GameObject LineRendererPrefab;
     [SerializeField] private CinemachineVirtualCamera virtualCamera; // Cámara
     [SerializeField] private Transform NodeHolder;
-    [SerializeField] private UIZone[] planets; // Niveles
+    [SerializeField] private UIZone[] levels; // Niveles
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI descriptionText;
 
-    private Zone currentZone;
-
-    public event Action onZoneSelected;
-
-    private void OnEnable()
-    {
-        onZoneSelected += UpdateSelection;
-    }
-    private void OnDisable()
-    {
-        onZoneSelected -= UpdateSelection;
-    }
+    private UIZone currentZone;
 
     void Start()
     {
         virtualCamera.Follow = indicator.transform;
         virtualCamera.LookAt = indicator.transform;
 
-        currentZone = planets[0].GetZone();
+        currentZone = levels[0];
 
-        foreach (UIZone uiZone in planets)
+        foreach (UIZone uiZone in levels)
         {
             if (uiZone == null) continue;
 
             Zone zone = new Zone(uiZone.name, uiZone.ZoneDescription, uiZone.ZoneKey);
 
             uiZone.Initialize(zone);
+            zone.Initialize(uiZone);
 
             interactiveMap.AddZone(zone);
-
-            zoneLookup[zone.ZoneKey] = uiZone;
         }
 
         interactiveMap.AddEdge(1, 2);
@@ -63,22 +50,14 @@ public class MapController : MonoBehaviour
 
         NodeConnection();
 
-        UpdateUnlockedZones();
 
-        ReadSelection(currentZone); 
+        ReadSelection(currentZone.GetZone()); 
     }
 
     public void UpdateSelection()
     {
-        if (zoneLookup.TryGetValue(currentZone.ZoneKey, out UIZone selectedNode))
-        {
-            StartCoroutine(MoveIndicatorSmoothly(selectedNode.transform.position));
-            ReadSelection(selectedNode.GetZone());
-        }
-        else
-        {
-            Debug.LogWarning("No se encontró UIZone para la zona con key " + currentZone.ZoneKey);
-        }
+        StartCoroutine(MoveIndicatorSmoothly(currentZone.transform.position));
+        ReadSelection(currentZone.GetZone());
     }
 
     private IEnumerator MoveIndicatorSmoothly(Vector3 targetPosition)
@@ -110,39 +89,27 @@ public class MapController : MonoBehaviour
         {
             foreach (var nodeNeighbor in node.Value.neighbors)
             {
-                if (zoneLookup.TryGetValue(node.Value.Key.ZoneKey, out UIZone nodeObject) &&
-                    zoneLookup.TryGetValue(nodeNeighbor.Key.ZoneKey, out UIZone neighborObject))
-                {
-                    GameObject LineR = Instantiate(LineRendererPrefab, NodeHolder);
-                    LineRenderer lr = LineR.GetComponent<LineRenderer>();
+                UIZone nodeObject = node.Value.Key.GetUIZone();
+                UIZone neighborObject = nodeNeighbor.Key.GetUIZone();
 
-                    lr.positionCount = 2;
-                    lr.SetPosition(0, nodeObject.transform.position);
-                    lr.SetPosition(1, neighborObject.transform.position);
-                }
-                else
-                {
-                    Debug.LogWarning("No se encontró UIZone para un nodo o su vecino en zoneLookup");
-                }
+                GameObject LineR = Instantiate(LineRendererPrefab, NodeHolder);
+                LineRenderer lr = LineR.GetComponent<LineRenderer>();
+
+                lr.positionCount = 2;
+                lr.SetPosition(0, nodeObject.transform.position);
+                lr.SetPosition(1, neighborObject.transform.position);
             }
         }
     }
-
 
     public void ReadSelection(Zone zone)
     {
         levelText.text = "Nivel seleccionado: " + zone.ZoneName;
         descriptionText.text = "Descripción: " + zone.ZoneDescription;
     }
-
+    /*
     public void UpdateUnlockedZones()
     {
-        foreach (var uiZone in planets)
-        {
-            if (uiZone != null)
-                uiZone.SetUnlocked(false);
-        }
-
         if (interactiveMap.Nodes.TryGetValue(currentZone.ZoneKey, out var currentNode))
         {
             foreach (var neighbor in currentNode.neighbors)
@@ -160,4 +127,5 @@ public class MapController : MonoBehaviour
             currentUIZone.SetUnlocked(true);
         }
     }
+    */
 }

@@ -11,24 +11,14 @@ public class UIZone : MonoBehaviour
     [SerializeField] private string zoneDescription;
     [SerializeField] private Material unlockedMaterial;
     [SerializeField] private Material lockedMaterial;
-    
+
     private MeshRenderer meshRenderer;
     private Zone linkedZone;
     private bool IsUnlocked;
 
-    private event Action onZoneSelected;
-
+    private UnityEvent onZoneSelected;
     public int ZoneKey => zoneKey;
     public string ZoneDescription => zoneDescription;
-
-    private void OnEnable()
-    {
-        
-    }
-    private void OnDisable()
-    {
-       
-    }
 
     private void Awake()
     {
@@ -63,7 +53,7 @@ public class UIZone : MonoBehaviour
         }
         else
         {
-            Debug.Log($"Zona {zoneKey} está bloqueada.");
+            Debug.Log("Zona " + linkedZone.ZoneName + " está bloqueada.");
         }
     }
 
