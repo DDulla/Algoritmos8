@@ -245,6 +245,7 @@ MonoBehaviour:
   zoneDescription: Level 2
   unlockedMaterial: {fileID: 2100000, guid: 1ce1c26b8fbbb3948a540a593f67e13f, type: 2}
   lockedMaterial: {fileID: 2100000, guid: a0c6762e2d023974dbe727d03f83089e, type: 2}
+  IsUnlocked: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +334,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.92, y: 2.34, z: -15.53}
+  m_LocalPosition: {x: -17.92, y: 2.34, z: -22.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -838,6 +839,7 @@ MonoBehaviour:
   zoneDescription: Level 5
   unlockedMaterial: {fileID: 2100000, guid: 1ce1c26b8fbbb3948a540a593f67e13f, type: 2}
   lockedMaterial: {fileID: 2100000, guid: a0c6762e2d023974dbe727d03f83089e, type: 2}
+  IsUnlocked: 0
 --- !u!1 &586798172
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,6 +1000,7 @@ MonoBehaviour:
   zoneDescription: Level 3
   unlockedMaterial: {fileID: 2100000, guid: 1ce1c26b8fbbb3948a540a593f67e13f, type: 2}
   lockedMaterial: {fileID: 2100000, guid: a0c6762e2d023974dbe727d03f83089e, type: 2}
+  IsUnlocked: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,7 +1115,7 @@ Transform:
   m_GameObject: {fileID: 843143937}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.92, y: 2.34, z: -15.53}
+  m_LocalPosition: {x: -17.92, y: 2.34, z: -22.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6448,7 +6451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 0, z: 13}
+  m_FollowOffset: {x: 0, y: 0, z: 20}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -11564,6 +11567,7 @@ MonoBehaviour:
   zoneDescription: Extra level 1
   unlockedMaterial: {fileID: 2100000, guid: 1ce1c26b8fbbb3948a540a593f67e13f, type: 2}
   lockedMaterial: {fileID: 2100000, guid: a0c6762e2d023974dbe727d03f83089e, type: 2}
+  IsUnlocked: 0
 --- !u!1 &1544759198
 GameObject:
   m_ObjectHideFlags: 0
@@ -11712,9 +11716,9 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: MoveSelection
+      - m_Target: {fileID: 1834517001}
+        m_TargetAssemblyTypeName: MapController, Assembly-CSharp
+        m_MethodName: SelectNewZone
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11884,6 +11888,7 @@ MonoBehaviour:
   zoneDescription: Level 1
   unlockedMaterial: {fileID: 2100000, guid: 1ce1c26b8fbbb3948a540a593f67e13f, type: 2}
   lockedMaterial: {fileID: 2100000, guid: a0c6762e2d023974dbe727d03f83089e, type: 2}
+  IsUnlocked: 0
 --- !u!1 &1724340269 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 11a065c4bb4afc443958f24d56f17a31,
@@ -11955,6 +11960,10 @@ MonoBehaviour:
   - {fileID: 1840604852}
   levelText: {fileID: 1044383258}
   descriptionText: {fileID: 1143233224}
+  mainCamera: {fileID: 330585545}
+  clickableLayers:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &1840604847
 GameObject:
   m_ObjectHideFlags: 0
@@ -12077,6 +12086,7 @@ MonoBehaviour:
   zoneDescription: Extra Level 2
   unlockedMaterial: {fileID: 2100000, guid: 1ce1c26b8fbbb3948a540a593f67e13f, type: 2}
   lockedMaterial: {fileID: 2100000, guid: a0c6762e2d023974dbe727d03f83089e, type: 2}
+  IsUnlocked: 0
 --- !u!1 &2079428071
 GameObject:
   m_ObjectHideFlags: 0
@@ -17027,6 +17037,7 @@ MonoBehaviour:
   zoneDescription: Level 4
   unlockedMaterial: {fileID: 2100000, guid: 1ce1c26b8fbbb3948a540a593f67e13f, type: 2}
   lockedMaterial: {fileID: 2100000, guid: a0c6762e2d023974dbe727d03f83089e, type: 2}
+  IsUnlocked: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

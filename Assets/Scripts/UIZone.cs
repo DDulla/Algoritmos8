@@ -14,7 +14,7 @@ public class UIZone : MonoBehaviour
 
     private MeshRenderer meshRenderer;
     private Zone linkedZone;
-    private bool IsUnlocked;
+    public bool IsUnlocked;
 
     private UnityEvent onZoneSelected;
     public int ZoneKey => zoneKey;

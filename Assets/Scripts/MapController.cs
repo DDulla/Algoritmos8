@@ -4,20 +4,28 @@ using Cinemachine;
 using System;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class MapController : MonoBehaviour
 {
     private InteractiveMap interactiveMap = new InteractiveMap(); 
 
-    [SerializeField] private GameObject indicator; // Indicador visual
+    [SerializeField] private GameObject indicator; 
     [SerializeField] private GameObject LineRendererPrefab;
-    [SerializeField] private CinemachineVirtualCamera virtualCamera; // Cámara
+    [SerializeField] private CinemachineVirtualCamera virtualCamera; 
     [SerializeField] private Transform NodeHolder;
-    [SerializeField] private UIZone[] levels; // Niveles
+    [SerializeField] private UIZone[] levels;
+
+    #region Text
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI descriptionText;
+    #endregion
 
+    #region Raycast
+    [SerializeField] private Camera mainCamera;
     private UIZone currentZone;
+    public LayerMask clickableLayers;
+    #endregion
 
     void Start()
     {
@@ -42,6 +50,7 @@ public class MapController : MonoBehaviour
         interactiveMap.AddEdge(2, 3);
         interactiveMap.AddEdge(3, 4);
         interactiveMap.AddEdge(4, 5);
+        interactiveMap.AddEdge(5, 4);
         interactiveMap.AddEdge(2, 10);
         interactiveMap.AddEdge(10, 2);
         interactiveMap.AddEdge(4, 20);
@@ -50,14 +59,9 @@ public class MapController : MonoBehaviour
 
         NodeConnection();
 
+        UpdateUnlockedZones();
 
         ReadSelection(currentZone.GetZone()); 
-    }
-
-    public void UpdateSelection()
-    {
-        StartCoroutine(MoveIndicatorSmoothly(currentZone.transform.position));
-        ReadSelection(currentZone.GetZone());
     }
 
     private IEnumerator MoveIndicatorSmoothly(Vector3 targetPosition)
@@ -82,6 +86,8 @@ public class MapController : MonoBehaviour
         }
 
         indicator.transform.position = targetPosition;
+        UpdateUnlockedZones();
+        ReadSelection(currentZone.GetZone());
     }
     public void NodeConnection()
     {
@@ -102,30 +108,81 @@ public class MapController : MonoBehaviour
         }
     }
 
+    public void SelectNewZone(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+
+        Ray ray = mainCamera.ScreenPointToRay(mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, clickableLayers))
+        {
+            UIZone selectedZone = hit.collider.GetComponent<UIZone>();
+
+            if (selectedZone != null && selectedZone.IsUnlocked)
+            {
+                StartCoroutine(MoveIndicatorSmoothly(hit.point));
+                currentZone = selectedZone;
+            }
+            else
+            {
+                Debug.Log("Zona no desbloqueada o no válida.");
+            }
+        }
+    }
+
     public void ReadSelection(Zone zone)
     {
         levelText.text = "Nivel seleccionado: " + zone.ZoneName;
         descriptionText.text = "Descripción: " + zone.ZoneDescription;
     }
-    /*
+
     public void UpdateUnlockedZones()
     {
-        if (interactiveMap.Nodes.TryGetValue(currentZone.ZoneKey, out var currentNode))
+        Zone currentZoneData = currentZone.GetZone();
+
+        if (interactiveMap.Nodes.TryGetValue(currentZoneData.ZoneKey, out Node<Zone> currentNode))
         {
             foreach (var neighbor in currentNode.neighbors)
             {
-                int neighborKey = neighbor.Key.ZoneKey;
-                if (zoneLookup.TryGetValue(neighborKey, out UIZone neighborUIZone))
+                Zone neighborZone = neighbor.Key;
+                UIZone neighborUIZone = neighborZone.GetUIZone();
+
+                if (neighborUIZone != null)
                 {
                     neighborUIZone.SetUnlocked(true);
                 }
             }
-        }
 
-        if (zoneLookup.TryGetValue(currentZone.ZoneKey, out UIZone currentUIZone))
-        {
-            currentUIZone.SetUnlocked(true);
+            currentZone.SetUnlocked(true);
+
+            foreach (var node in interactiveMap.Nodes)
+            {
+                Zone zone = node.Value.Key;
+
+                bool isNeighbor = false;
+                foreach (var neighbor in currentNode.neighbors)
+                {
+                    if (neighbor.Key.ZoneKey == zone.ZoneKey)
+                    {
+                        isNeighbor = true;
+                        break;
+                    }
+                }
+
+                if (zone.ZoneKey != currentZoneData.ZoneKey && !isNeighbor)
+                {
+                    UIZone uiZone = zone.GetUIZone();
+                    if (uiZone != null)
+                    {
+                        uiZone.SetUnlocked(false);
+                    }
+                }
+            }
         }
     }
-    */
+
+
 }
